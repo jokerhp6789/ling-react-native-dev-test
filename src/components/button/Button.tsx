@@ -5,10 +5,11 @@ import {
     StyleProp,
     ViewStyle,
     TextStyle,
+    TouchableOpacityProps,
 } from "react-native";
 import { themeColor } from "../../style/app-color";
 
-export interface IButtonProps {
+export interface IButtonProps extends TouchableOpacityProps {
     children?: any;
     style?: StyleProp<ViewStyle>;
     styleText?: StyleProp<TextStyle>;
@@ -18,6 +19,7 @@ const Button: React.FC<IButtonProps> = ({
     children,
     style = {},
     styleText,
+    ...rest
 }) => {
     return (
         <TouchableOpacity
@@ -34,6 +36,7 @@ const Button: React.FC<IButtonProps> = ({
                 },
                 style,
             ]}
+            {...rest}
         >
             {children && <Text style={[styleText]}>{children}</Text>}
         </TouchableOpacity>
