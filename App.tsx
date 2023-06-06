@@ -1,7 +1,15 @@
 import { StatusBar } from "expo-status-bar";
 import { sortBy, reverse, find, unionBy } from "lodash";
 import { useEffect, useMemo, useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import {
+    AccessibilityInfo,
+    Alert,
+    Dimensions,
+    KeyboardAvoidingView,
+    Platform,
+    StyleSheet,
+    View,
+} from "react-native";
 import { AppContext } from "./src/context/app.context";
 import { IUser } from "./src/interface/user";
 import ResultScreen from "./src/screens/result/ResultScreen";
@@ -40,12 +48,14 @@ export default function App() {
 
     useEffect(() => {
         if (searchInput) {
-            setSearchHistory(
-                unionBy(
-                    [...(searchHistory || []), searchInput].filter((i) => !!i),
-                    (i) => i
-                )
+            const history = unionBy(
+                [searchInput, ...(searchHistory || [])].filter((i) => !!i),
+                (i) => i
             );
+            if (history?.length > 12) {
+                history.length = 12;
+            }
+            setSearchHistory(history);
             loadData();
         }
     }, [searchInput]);
@@ -93,10 +103,14 @@ export default function App() {
                 reset,
             }}
         >
-            <View style={styles.container}>
+            <KeyboardAvoidingView
+                style={styles.container}
+                enabled={!AccessibilityInfo.isReduceMotionEnabled()}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
                 {listResult?.length > 0 ? <ResultScreen /> : <SearchScreen />}
                 <StatusBar style="auto" />
-            </View>
+            </KeyboardAvoidingView>
         </AppContext.Provider>
     );
 }
@@ -104,6 +118,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: Dimensions.get("window").height,
         backgroundColor: "#fff",
         justifyContent: "center",
         paddingHorizontal: 16,

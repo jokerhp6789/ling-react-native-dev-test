@@ -1,5 +1,11 @@
 import React, { useContext, useState } from "react";
-import { View, TextInput, Text, TouchableWithoutFeedback } from "react-native";
+import {
+    View,
+    TextInput,
+    Text,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import Button from "../../components/button/Button";
 import { useRef } from "react";
@@ -60,17 +66,17 @@ const SearchScreen: React.FC<ISearchScreenProps> = ({ id }) => {
             return null;
         }
         return (
-            <View>
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                 {searchHistory.map((search, index) => (
-                    <TouchableWithoutFeedback
+                    <TouchableOpacity
                         onPress={() => {
                             setInputRef(search);
                         }}
+                        style={{ padding: 4, flex: 1 / 3 }}
+                        key={`${index}_${search}`}
                     >
-                        <Text style={{ padding: 4 }} key={`${index}_${search}`}>
-                            {search}
-                        </Text>
-                    </TouchableWithoutFeedback>
+                        <Text>{search}</Text>
+                    </TouchableOpacity>
                 ))}
             </View>
         );

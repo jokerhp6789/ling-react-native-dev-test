@@ -12,6 +12,10 @@ export interface IResultItemProps {
     user: IUser;
 }
 
+export interface ITableRowProps {
+    content: IUser;
+}
+
 const ResultScreen: React.FC<IResultScreenProps> = ({ id }) => {
     const { listResult, reset } = useContext(AppContext);
 
@@ -26,9 +30,10 @@ const ResultScreen: React.FC<IResultScreenProps> = ({ id }) => {
                     flexDirection: "row",
                     alignItems: "center",
                     paddingVertical: 8,
+                    // borderWidth: 0.2,
                 }}
             >
-                <View style={{ flex: 2 }}>
+                <View style={{ flex: 2, padding: 8 }}>
                     <Text>Name</Text>
                 </View>
                 <View style={{ flex: 1 }}>
@@ -40,7 +45,7 @@ const ResultScreen: React.FC<IResultScreenProps> = ({ id }) => {
                     </Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                    <Text style={{ textAlign: "center" }}>
+                    <Text style={{ textAlign: "center" }} numberOfLines={2}>
                         Is Searched User ?
                     </Text>
                 </View>
@@ -50,7 +55,14 @@ const ResultScreen: React.FC<IResultScreenProps> = ({ id }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <View style={{ flexDirection: "row", marginTop: 100 }}>
+            <View
+                style={{
+                    flexDirection: "row",
+                    marginTop: 100,
+                    marginBottom: 16,
+                    justifyContent: "flex-end",
+                }}
+            >
                 <Button
                     onPress={() => {
                         reset();
@@ -85,16 +97,37 @@ const ResultItem: React.FC<IResultItemProps> = ({ user }) => {
             }}
         >
             <View style={{ flex: 2 }}>
-                <Text>{name}</Text>
+                <Text style={{ color: isSearched ? "red" : "black" }}>
+                    {name}
+                </Text>
             </View>
             <View style={{ flex: 1 }}>
-                <Text style={{ textAlign: "center" }}>{order}</Text>
+                <Text
+                    style={{
+                        textAlign: "center",
+                        color: isSearched ? "red" : "black",
+                    }}
+                >
+                    {order}
+                </Text>
             </View>
             <View style={{ flex: 1 }}>
-                <Text style={{ textAlign: "center" }}>{bananas}</Text>
+                <Text
+                    style={{
+                        textAlign: "center",
+                        color: isSearched ? "red" : "black",
+                    }}
+                >
+                    {bananas}
+                </Text>
             </View>
             <View style={{ flex: 1 }}>
-                <Text style={{ textAlign: "center" }} numberOfLines={2}>
+                <Text
+                    style={{
+                        textAlign: "center",
+                        color: isSearched ? "red" : "black",
+                    }}
+                >
                     {isSearched ? "Yes" : "No"}
                 </Text>
             </View>
