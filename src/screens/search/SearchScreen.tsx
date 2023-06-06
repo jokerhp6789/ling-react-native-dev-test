@@ -57,8 +57,8 @@ const SearchScreen: React.FC<ISearchScreenProps> = ({ id }) => {
                     style={{ marginLeft: 8 }}
                     onPress={() => {
                         if (inputRef) {
-                            setSearchInput(inputRef);
-                            setInputRef();
+                            setSearchInput(inputRef.trim());
+                            setInputRef(null);
                         }
                     }}
                 >
