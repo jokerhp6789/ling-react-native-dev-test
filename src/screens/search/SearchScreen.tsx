@@ -10,6 +10,12 @@ import { FontAwesome } from "@expo/vector-icons";
 import Button from "../../components/button/Button";
 import { useRef } from "react";
 import { AppContext } from "../../context/app.context";
+import {
+    paddingBase,
+    paddingLargeX,
+    paddingMedium,
+    SCREEN_WIDTH,
+} from "../../style/app.size";
 
 export interface ISearchScreenProps {
     [key: string]: any;
@@ -40,7 +46,7 @@ const SearchScreen: React.FC<ISearchScreenProps> = ({ id }) => {
                     <TextInput
                         style={{
                             width: "100%",
-                            padding: 8,
+                            padding: paddingMedium,
                         }}
                         placeholder="User name..."
                         onChangeText={(text) => setInputRef(text)}
@@ -52,6 +58,7 @@ const SearchScreen: React.FC<ISearchScreenProps> = ({ id }) => {
                     onPress={() => {
                         if (inputRef) {
                             setSearchInput(inputRef);
+                            setInputRef();
                         }
                     }}
                 >
@@ -66,13 +73,30 @@ const SearchScreen: React.FC<ISearchScreenProps> = ({ id }) => {
             return null;
         }
         return (
-            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <View
+                style={{
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    gap: 1,
+                    backgroundColor: "rgba(68, 68, 69, 0.1)",
+                    padding: 1,
+                }}
+            >
                 {searchHistory.map((search, index) => (
                     <TouchableOpacity
                         onPress={() => {
                             setInputRef(search);
                         }}
-                        style={{ padding: 4, flex: 1 / 3 }}
+                        activeOpacity={0.8}
+                        style={{
+                            padding: paddingBase,
+                            backgroundColor: "white",
+                            width:
+                                (SCREEN_WIDTH -
+                                    2 * paddingLargeX -
+                                    paddingBase) /
+                                3,
+                        }}
                         key={`${index}_${search}`}
                     >
                         <Text>{search}</Text>

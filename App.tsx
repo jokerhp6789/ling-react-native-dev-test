@@ -15,6 +15,7 @@ import { IUser } from "./src/interface/user";
 import ResultScreen from "./src/screens/result/ResultScreen";
 import SearchScreen from "./src/screens/search/SearchScreen";
 import * as users from "./src/data/users.json";
+import { paddingLargeX } from "./src/style/app.size";
 
 export default function App() {
     const data = useMemo<IUser[]>(() => {
@@ -121,6 +122,6 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height,
         backgroundColor: "#fff",
         justifyContent: "center",
-        paddingHorizontal: 16,
+        paddingHorizontal: paddingLargeX,
     },
 });
