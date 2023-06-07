@@ -1,14 +1,8 @@
-import React, { useContext, useState } from "react";
-import {
-    View,
-    TextInput,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import React, { useContext, useState } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Button from "../../components/button/Button";
-import { useRef } from "react";
+import InputSearch from "../../components/input/InputSearch";
 import { AppContext } from "../../context/app.context";
 import {
     paddingBase,
@@ -27,44 +21,18 @@ const SearchScreen: React.FC<ISearchScreenProps> = ({ id }) => {
 
     const renderSearchView = () => {
         return (
-            <View style={{ flexDirection: "row", marginBottom: 100 }}>
-                <View
-                    style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        flex: 1,
-                        borderWidth: 1,
-                        borderRadius: 8,
-                    }}
-                >
-                    <FontAwesome
-                        name="search"
-                        size={18}
-                        color="black"
-                        style={{ marginLeft: 8 }}
-                    />
-                    <TextInput
-                        style={{
-                            width: "100%",
-                            padding: paddingMedium,
-                        }}
-                        placeholder="User name..."
-                        onChangeText={(text) => setInputRef(text)}
-                        value={inputRef}
-                    />
-                </View>
-                <Button
-                    style={{ marginLeft: 8 }}
-                    onPress={() => {
-                        if (inputRef) {
-                            setSearchInput(inputRef.trim());
-                            setInputRef(null);
-                        }
-                    }}
-                >
-                    Search
-                </Button>
-            </View>
+            <InputSearch
+                style={{ marginBottom: 100 }}
+                placeholder="User name..."
+                onChangeText={(text) => setInputRef(text)}
+                value={inputRef}
+                onSearch={() => {
+                    if (inputRef) {
+                        setSearchInput(inputRef.trim());
+                        setInputRef(null);
+                    }
+                }}
+            />
         );
     };
 
