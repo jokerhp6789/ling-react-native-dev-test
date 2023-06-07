@@ -16,7 +16,7 @@ Clone the repository:
 
 ```bash
 
-git clone <repository-url>
+git clone https://github.com/jokerhp6789/ling-react-native-dev-test.git
 
 ```
 
@@ -44,13 +44,13 @@ You can run the app on a physical device using the Expo app or on an emulator/si
 
 The project structure is as follows:
 
-* App.tsx: The entry point of the application.
-* components/: Contains reusable components used in the app.
-* screens/: Contains the main screens of the app.
-* components/: Contains base components for the project.
-* style/: Contains style-related files such as colors and fonts.
-* tests/: Contains test files for the components and services.
-* package.json: Contains the project's dependencies and scripts.
+-   App.tsx: The entry point of the application.
+-   components/: Contains reusable components used in the app.
+-   screens/: Contains the main screens of the app.
+-   components/: Contains base components for the project.
+-   style/: Contains style-related files such as colors and fonts.
+-   tests/: Contains test files for the components and services.
+-   package.json: Contains the project's dependencies and scripts.
 
 ## Running Tests
 
@@ -61,8 +61,8 @@ This project uses Jest as the test engine. To run the tests, use the following c
 yarn test
 
 ```
-This will execute all the tests defined in the tests/ directory.
 
+This will execute all the tests defined in the tests/ directory.
 
 ## Contributing
 
@@ -72,8 +72,8 @@ Contributions to this project are welcome. If you find any issues or have sugges
 
 ## Acknowledgments
 
-* This project was developed as a learning exercise for React Native and Expo.
-* Thanks to the open-source community for providing helpful libraries and resources
+-   This project was developed as a learning exercise for React Native and Expo.
+-   Thanks to the open-source community for providing helpful libraries and resources
 
 ## Contact
 
